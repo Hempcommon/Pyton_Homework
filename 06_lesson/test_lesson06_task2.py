@@ -24,7 +24,7 @@ def test_session_storage_auth():
         }
     ]
 
-    user1_profile_url = "hhttps://gitflic.ru/user/devtools"
+    user1_profile_url = "https://gitflic.ru/user/devtools"
     user2_profile_url = "https://gitflic.ru/user/poops"
 
     try:
@@ -69,7 +69,7 @@ def test_session_storage_auth():
         url_user2 = driver.current_url
 
         # 11. Проверьте, URL для пользователя 1 и пользователя 2 различаются
-        assert url_user1 != url_user2(
+        assert url_user1 != url_user2, (
          f"URL должны различаться. "
          f"Пользователь 1: {url_user1}, "
          f"Пользователь 2: {url_user2}"
