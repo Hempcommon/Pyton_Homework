@@ -1,5 +1,3 @@
-import time
-
 import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -22,7 +20,7 @@ class SlowCalculatorPage:
             None.
         """
         self.driver = driver
-        self.wait = WebDriverWait(driver, 60)
+        self.wait = WebDriverWait(driver, 70)
         self.url = (
             "https://bonigarcia.dev/selenium-webdriver-java/"
             "slow-calculator.html"
@@ -78,10 +76,16 @@ class SlowCalculatorPage:
         Returns:
             str: Результат вычисления в формате "Result: число".
         """
-        time.sleep(50)
-        element: WebElement = self.driver.find_element(
-            *self.result_screen
+        element: WebElement = self.wait.until(
+            EC.presence_of_element_located(self.result_screen)
         )
+
+        initial_text = element.text
+
+        self.wait.until(
+            lambda driver: element.text != initial_text
+        )
+
         full_text = element.text
 
         if "=" in full_text:
