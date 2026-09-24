@@ -1,8 +1,11 @@
 import uuid
 
 import allure
-
+import pytest
 from pages.board_page import BoardPage
+
+
+pytestmark = pytest.mark.ui
 
 
 @allure.title("UI-001 Создание задачи")
